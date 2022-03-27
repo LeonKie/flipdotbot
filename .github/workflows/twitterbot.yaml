@@ -2,7 +2,7 @@ name: twitterbot
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0,17,18,19 * * * *'
 
 jobs:
   flipdot-post:
