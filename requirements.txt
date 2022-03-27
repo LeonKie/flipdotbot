@@ -1,3 +1,7 @@
 re
 numpy
 pickel
+tweepy
+datetime
+openai
+ast

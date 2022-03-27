@@ -1,10 +1,10 @@
 import os
 import openai
 import ast
+import re
 
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
 restart_sequence = "\n"
 
 
@@ -23,9 +23,11 @@ def main(input: str):
     presence_penalty=0
     )
     
-    return ast.literal_eval(response.choices[0].text)
+    output_string=re.sub(' ', '', response.choices[0].text)
+    return ast.literal_eval(output_string)
     
     
-inp=input("New Coords: ")
-print(main(inp))
+if __name__ == "__main__":
+    main()    
+
 

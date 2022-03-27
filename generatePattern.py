@@ -1,7 +1,7 @@
 import numpy as np
 import re
 import pickle
-
+import os
 
 
 class FLIP_DOT_DISPLAY():
@@ -10,7 +10,7 @@ class FLIP_DOT_DISPLAY():
         self.on="\U0001F7E1"
         self.off="\U000026AB"
         self.filename="board.pkl"
-        self.board = np.zeros((8, 8))
+        self.board = np.zeros((7, 18))
         
     def flip_a_dot(self, coords: np.ndarray) -> None:
         self.board[coords[0], coords[1]] = (self.board[coords[0], coords[1]] + 1) % 2  #flip the dot
@@ -22,21 +22,22 @@ class FLIP_DOT_DISPLAY():
         print(type(self.board))
         output_String = np.array2string(self.board, formatter={'float':lambda x: self.on if x else self.off})
 
-        return " "+ re.sub('[\[\]]', '', output_String)
+        return re.sub(' ','', re.sub('[\[\]]', '', output_String))
     
     
     def save_board(self) -> None:
         pickle.dump(self.board, open(self.filename, "wb"))
         
     def load_board(self) -> None:
-        self.board=pickle.load(open(self.filename, "rb"))
+        if os.path.isfile(self.filename):
+            board_loading=pickle.load(open(self.filename, "rb"))
+            
+            if self.board.shape != board_loading.shape:
+                pass
+            else:
+                self.board=board_loading
+                
         
-        
-board=FLIP_DOT_DISPLAY()
-#board.flip_a_dot(np.array([0,0]))
-print(board)
-#board.save_board()
-board.load_board()
-board.flip_a_dot([5,5])
-print(board)
-board.save_board()
+
+if __name__ == '__main__':
+    pass
