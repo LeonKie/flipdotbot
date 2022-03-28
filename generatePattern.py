@@ -13,8 +13,11 @@ class FLIP_DOT_DISPLAY():
         self.board = np.zeros((7, 18))
         
     def flip_a_dot(self, coords: np.ndarray) -> None:
-        self.board[coords[0], coords[1]] = (self.board[coords[0], coords[1]] + 1) % 2  #flip the dot
-        
+        if len(coords) == 2:
+            self.board[coords[0], coords[1]] = (self.board[coords[0], coords[1]] + 1) % 2  #flip the dot
+        else:
+            print("Invalid coordinate dimension")
+            
     def get_board(self) -> np.ndarray:
         return self.board
     
