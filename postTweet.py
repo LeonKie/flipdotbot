@@ -88,7 +88,6 @@ def main():
         status = api.update_status(status=tweet)
     except:
         print("Tweet failed")
-        print(status)
         
     
 if __name__ == "__main__":
