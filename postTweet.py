@@ -86,7 +86,7 @@ def main():
     
     try:
         status = api.update_status(status=tweet)
-    except tweepy.error.TweepError:
+    except:
         print("Tweet failed")
         print(status)
         
