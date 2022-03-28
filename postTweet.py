@@ -61,8 +61,11 @@ def main():
     points2flip = []
     for reply in replies:
         if reply.id not in reply_id:
-            points2flip.extend(extract_Coords.main(reply.text)) #extract the coordinates from the tweet
-
+            newCoord=extract_Coords.main(reply.text)
+            if isinstance(newCoord[0], list):
+                points2flip.extend(newCoord) #extract the coordinates from the tweet
+            else:
+                points2flip.append(newCoord)
     
     # Save the reply ids to a file
     with open('reply_ids.pkl', 'wb') as f:
