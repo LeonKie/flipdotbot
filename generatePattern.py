@@ -10,7 +10,7 @@ class FLIP_DOT_DISPLAY():
         self.on="\U0001F7E1"
         self.off="\U000026AB"
         self.filename="board.pkl"
-        self.board = np.zeros((7, 18))
+        self.board = np.zeros((7, 11))
         
     def flip_a_dot(self, coords: np.ndarray) -> None:
         if len(coords) == 2:
