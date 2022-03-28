@@ -83,7 +83,13 @@ def main():
     # Publish the board to Twitter
     tweet = board.__repr__()
     print(tweet)
-    status = api.update_status(status=tweet)
+    
+    try:
+        status = api.update_status(status=tweet)
+    except tweepy.error.TweepError:
+        print("Tweet failed")
+        print(status)
+        
     
 if __name__ == "__main__":
     main()
