@@ -86,11 +86,13 @@ def main():
     # Publish the board to Twitter
     tweet = board.__repr__()
     print(tweet)
-    
-    try:
-        status = api.update_status(status=tweet)
-    except:
-        print("Tweet failed")
+    if not points2flip:
+        print("No new points to flip")
+    else:
+        try:
+            status = api.update_status(status=tweet)
+        except:
+            print("Tweet failed")
         
     
 if __name__ == "__main__":
